@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import {PORT} from "./config/serverConfig.js"
+import { config } from "./config/serverConfig.js"
+import sendBasicEmails  from "./services/email-service.js"
 
 const setUpAndStartServer = () => {
 
@@ -11,10 +12,18 @@ const setUpAndStartServer = () => {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
 
-
+ 
   // Listen to the root endpoint
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`)
+  app.listen(config.PORT, () => {
+    console.log(`Server is running on port ${config.PORT}`)
+
+    // send email
+    sendBasicEmails(    
+      'support@noti.com',
+      'metaversewebo@gmail.com',
+      'This is a testing Email', 
+      'Hey, how are you? I hope you like this email.'
+    )
   })
 }
 setUpAndStartServer()
