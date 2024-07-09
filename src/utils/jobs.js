@@ -1,5 +1,6 @@
-import cron from 'node-cron';
-
+const cron = require('node-cron');
+const emailService = require('../services/email-service');
+const sender = require('../config/emailConfig');
 /**
  * 10:00 am 
  * Every 5 minutes
@@ -8,9 +9,11 @@ import cron from 'node-cron';
  */
 
 const setupJobs=()=>{
-    cron.schedule('*/5 * * * *', () => {
+    cron.schedule('*/5 * * * *', async () => {
         console.log('running a task every 5 minutes');
+        const response = await emailService.fetchPendingEmails();
+        console.log(response);
     });
 }
 
-export default setupJobs;
+module.exports = setupJobs;

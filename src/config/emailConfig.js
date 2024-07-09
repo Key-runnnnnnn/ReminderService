@@ -1,12 +1,13 @@
-import nodemailer from 'nodemailer';
-import { config } from './serverConfig.js'
+const nodemailer = require('nodemailer');
 
+const { EMAIL_ID, EMAIL_PASS } = require('./serverConfig');
+console.log(EMAIL_ID, EMAIL_PASS);
 const sender = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-      user:config.EMAIL_ID,
-      pass:config.EMAIL_PASS
+        user: EMAIL_ID,
+        pass: EMAIL_PASS
     }
-})
+});
 
-export default sender;
+module.exports = sender;

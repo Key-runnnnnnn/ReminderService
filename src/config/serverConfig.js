@@ -1,8 +1,12 @@
-import dotenv from 'dotenv';
-dotenv.config();// configure dotenv or load environment variables or read from .env file
+// configure dotenv or load environment variables or read from .env file
+const dotenv = require('dotenv');
+dotenv.config();
 
-export const config = {
-  PORT: process.env.PORT || 3000,
-  EMAIL_ID : process.env.EMAIL_ID,
-  EMAIL_PASS : process.env.EMAIL_PASS,
-}
+module.exports = {
+    PORT: process.env.PORT,
+    EMAIL_ID: process.env.EMAIL_ID,
+    EMAIL_PASS: process.env.EMAIL_PASS,
+    // MESSAGE_BROKER_URL: process.env.MESSAGE_BROKER_URL,
+    // EXCHANGE_NAME: process.env.EXCHANGE_NAME,
+    // REMINDER_BINDING_KEY: process.env.REMINDER_BINDING_KEY
+};

@@ -1,7 +1,12 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import { config } from "./config/serverConfig.js"
-import sendBasicEmails  from "./services/email-service.js"
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const { PORT } = require('./config/serverConfig');
+
+// const TicketController = require('./controllers/ticket-controller');
+// const EmailService = require('./services/email-service');
+
+const jobs = require('./utils/jobs');
 
 const setUpAndStartServer = () => {
 
@@ -14,9 +19,9 @@ const setUpAndStartServer = () => {
 
  
   // Listen to the root endpoint
-  app.listen(config.PORT, () => {
-    console.log(`Server is running on port ${config.PORT}`)
-
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`)
+    jobs()
     // send email
     // sendBasicEmails(    
     //   'support@noti.com',
